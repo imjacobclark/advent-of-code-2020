@@ -1,5 +1,6 @@
 use std::env;
 use std::fs;
+use itertools::Itertools;
 
 pub fn fix_expenses() {
   let contents = fs::read_to_string("./input/one.txt")
@@ -7,7 +8,7 @@ pub fn fix_expenses() {
 
   let numbers: Vec<i32> = contents.lines().map(|x| x.parse::<i32>().unwrap()).collect();
 
-  // Star 1
+  // -- Star 1 --
   
   // Method 1
   let mut result = 0;
@@ -43,7 +44,17 @@ pub fn fix_expenses() {
 
   println!("Task 1, Method 2: {:?}", z[0] * z[1]);
 
-  // Star 2
+  // Method 3
+  let result = numbers
+    .iter()
+    .copied()
+    .combinations(2)
+    .find(|x| x.iter().sum::<i32>() == 2020)
+    .unwrap_or([].to_vec());
+    
+  println!("Task 1, Method 3: {:?}", result[0] * result[1]);
+
+  // -- Star 2 --
 
   // Method 1
   let mut result = 0;
@@ -62,4 +73,14 @@ pub fn fix_expenses() {
   }
 
   println!("Task 2, Method 1: {:?}", result);
+
+  // Method 2
+  let result = numbers
+  .iter()
+  .copied()
+  .combinations(3)
+  .find(|x| x.iter().sum::<i32>() == 2020)
+  .unwrap_or([].to_vec());
+    
+  println!("Task 2, Method 2: {:?}", result[0] * result[1] * result[2]);
 }
