@@ -26,13 +26,13 @@ pub fn fix_expenses() {
   println!("Task 1, Method 1: {:?}", result);
 
   // Method 2
-  let z = &numbers
+  let z = numbers
     .iter()
-    .map(|&x| {
-      *&numbers
+    .map(|x| {
+      numbers
         .iter()
-        .find(|&y| if x != *y { 
-          x + y == 2020 
+        .find(|y| if x != *y { 
+          *x + *y == 2020 
         } else { 
           false 
         })
