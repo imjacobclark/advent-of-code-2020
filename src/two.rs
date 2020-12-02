@@ -15,16 +15,28 @@ pub fn password_policy() {
 let passwords: Vec<(bool, bool)> = passwords
   .lines()
   .map(|password| {
-    let mut strings = password.split_whitespace();
-    let rules = strings.next().unwrap().to_string();
+    let mut strings = password
+      .split_whitespace();
 
+    let rules = strings.next().unwrap().to_string();
     let mut rules_iter = rules.split("-").map(|s| s.to_string());
     let min = rules_iter.next().unwrap();
     let max = rules_iter.next().unwrap();
 
-    let requirement = strings.next().unwrap().to_string().replace(":", "");
-    let mut password: Vec<String> = strings.next().unwrap().to_string().split("").map(|s| s.to_string()).collect::<Vec<String>>();
-    
+    let requirement = strings
+      .next()
+      .unwrap()
+      .to_string()
+      .replace(":", "");
+  
+    let mut password: Vec<String> = strings
+      .next()
+      .unwrap()
+      .to_string()
+      .split("")
+      .map(|s| s.to_string())
+      .collect::<Vec<String>>();
+
     password.remove(0);
     password.remove(password.len()-1);
 
