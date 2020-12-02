@@ -1,4 +1,3 @@
-use std::env;
 use std::fs;
 use itertools::Itertools;
 
@@ -24,7 +23,7 @@ pub fn fix_expenses() {
     }
   }
 
-  println!("Task 1, Method 1: {:?}", result);
+  println!("Day 1, Task 1, Method 1: {:?}", result);
 
   // Method 2
   let z = numbers
@@ -42,7 +41,7 @@ pub fn fix_expenses() {
   .filter(|&x| x != &0)
   .collect::<Vec<&i32>>();
 
-  println!("Task 1, Method 2: {:?}", z[0] * z[1]);
+  println!("Day 1, Task 1, Method 2: {:?}", z[0] * z[1]);
 
   // Method 3
   let result = numbers
@@ -52,7 +51,7 @@ pub fn fix_expenses() {
     .find(|x| x.iter().sum::<i32>() == 2020)
     .unwrap_or([].to_vec());
     
-  println!("Task 1, Method 3: {:?}", result[0] * result[1]);
+  println!("Day 1, Task 1, Method 3: {:?}", result[0] * result[1]);
 
   // -- Star 2 --
 
@@ -72,7 +71,7 @@ pub fn fix_expenses() {
     }
   }
 
-  println!("Task 2, Method 1: {:?}", result);
+  println!("Day 1, Task 2, Method 1: {:?}", result);
 
   // Method 2
   let result = numbers
@@ -82,5 +81,5 @@ pub fn fix_expenses() {
   .find(|x| x.iter().sum::<i32>() == 2020)
   .unwrap_or([].to_vec());
     
-  println!("Task 2, Method 2: {:?}", result[0] * result[1] * result[2]);
+  println!("Day 1, Task 2, Method 2: {:?}", result[0] * result[1] * result[2]);
 }
