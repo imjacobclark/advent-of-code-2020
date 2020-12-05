@@ -4,18 +4,15 @@ pub fn walk_items(grid: Vec<Vec<String>>, row: usize, column: usize, trees: usiz
   let mut tree_count = trees;
   let mut next_column = column + right;
   let next_row = row + down;
+  let column_will_overflow = next_column > grid[row].len() - 1;
+  let row_will_overflow = next_row > grid.len() - 1;
+  let is_tree = grid[row][column] == "#";
 
-  let column_will_overflow = next_column > grid[row].len();
   if column_will_overflow { next_column = next_column - grid[row].len() } 
 
-  let at_end_of_column = next_column == grid[row].len();
-  if at_end_of_column { next_column = 0 }
-
-  let is_tree = grid[row][column] == "#";
   if is_tree { tree_count = tree_count + 1 }
 
-  let no_more_rows = next_row > grid.len() - 1;
-  if no_more_rows { return tree_count } 
+  if row_will_overflow { return tree_count } 
    
   walk_items(grid, next_row, next_column, tree_count, right, down)
 }
