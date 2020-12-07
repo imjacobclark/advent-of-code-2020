@@ -34,19 +34,23 @@ pub fn validate_passport(pmf: Vec<String>) -> bool {
 pub fn passport_validation() {
   let contents = fs::read_to_string("./input/four.txt").expect("Something went wrong reading the file");
 
-  let valid_passports: usize = contents
+  let passports: Vec<Vec<(String, String)>> = contents
     .split("\n\n")
     .map(|passport| passport
       .split(" ")
       .flat_map(|passport_data| passport_data
         .split("\n")
         .map(marshall_passport_key_value))
-      .collect::<Vec<(String, String)>>())
-    .map(find_passports_missing_fields)
-    .map(validate_passport)
-    .filter(|&x| x == true)
-    .collect::<Vec<bool>>()
-    .len();
+      .collect())
+    .collect();
+
+    let valid_passports: usize = passports
+      .into_iter()
+      .map(find_passports_missing_fields)
+      .map(validate_passport)
+      .filter(|&x| x == true)
+      .collect::<Vec<bool>>()
+      .len();
 
     println!("Day 4, Task 1: {:?}", valid_passports);
 }
