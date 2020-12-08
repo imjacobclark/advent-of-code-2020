@@ -37,6 +37,7 @@ pub fn validate_passport(passport: Vec<(String, String)>) -> bool {
     .clone()
     .into_iter()
     .map(|field| {
+      // Could replace with a map of functions, or "validators"... Mehs.
       if field.0 == "byr" { return validate_boundary(field.1.parse::<i32>().unwrap(), 1920, 2002) && field.1.len() == 4; } 
       if field.0 == "iyr" {  return validate_boundary(field.1.parse::<i32>().unwrap(), 2010, 2020) && field.1.len() == 4; }
       if field.0 == "eyr" {  return validate_boundary(field.1.parse::<i32>().unwrap(), 2020, 2030)  && field.1.len() == 4; }
